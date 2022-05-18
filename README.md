@@ -2,6 +2,9 @@
 
 ## The API relies of on sha256 hashing functions and Flask for endpoints
 
-### Checking authentication at `/request_authentication` endpoint that takes password as first argument and hashed_password as second argument
+### Enter `export FLASK_APP=main.py`
+### Enter `flask run`
 
-### Creating hashed password at `/hash_new_password` endpoint that takes password as argument
+### Check authentication at `/request_authentication` endpoint, which takes password as first argument and hashed_password as second argument
+
+### Create hashed password at `/hash_new_password` endpoint, which takes password as argument
