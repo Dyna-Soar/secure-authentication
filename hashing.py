@@ -22,6 +22,7 @@ def create_hashed_password(password):
             break
         if i == len(password) - 1:
             return False
+    return hash_password(password)
 
 
 def check_hash(password, hash_sent):
