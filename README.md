@@ -8,3 +8,5 @@
 ### Check authentication at `/request_authentication` endpoint, which takes password as first argument and hashed_password as second argument
 
 ### Create hashed password at `/hash_new_password` endpoint, which takes password as argument
+
+### To test endpoints run: `python -m pytest tests/ -v`
