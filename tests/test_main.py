@@ -26,4 +26,4 @@ class TestRequestNewHash:
     def test_password_valid(self):
         response = client.post("/hash_new_password", data={'password': "asczhiflx.8"})
         assert response.status_code == 200
-        assert "hashed_password" in response.data
+        assert b'hashed_password' in response.data
