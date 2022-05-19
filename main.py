@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 from json import dumps
 
@@ -8,15 +8,18 @@ app = Flask(__name__)
 
 
 @app.route("/request_authentication", methods=['POST'])
-def request_authentication(password, hash_sent):
+def request_authentication():
+    password = request.form["password"]
+    hash_sent = request.form["hash_sent"]
     if check_hash(password, hash_sent):
         return dumps({"IsPassword": True}), 200
     return dumps({"IsPassword": False}), 200
 
 
 @app.route("/hash_new_password", methods=['POST'])
-def hash_new_password(password):
+def hash_new_password():
+    password = request.form["password"]
     hashed_password = create_hashed_password(password)
     if hashed_password is False:
-        return dumps({"Message": "Password has to contain at least 8 characters; 1 digit; 1 special character"}), 202
+        return dumps({"Error Message": "Password not valid, should contain at least 8 characters; 1 digit; 1 special character"}), 406
     return dumps({"hashed_password": hashed_password}), 200
