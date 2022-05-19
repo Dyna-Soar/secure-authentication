@@ -2,8 +2,9 @@ from hashlib import sha256
 
 
 def hash_password(password):
-    hashed_password = sha256(password).hexdigest()
-    return hashed_password
+    encoded_password = bytes(str(password), encoding='utf-8')
+    hashed_password = sha256(encoded_password).hexdigest().encode('utf-8')
+    return str(hashed_password)
 
 
 def create_hashed_password(password):
@@ -17,8 +18,9 @@ def create_hashed_password(password):
         if i == len(password) - 1:
             return False
     # Check for 1 special character
+    special_chars = {'~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"', '*', '|', ',', '&', '<', '`', '}', '.', '_', '=', ']', '!', '>', ';', '?', '#', '$', ')', '/'}
     for i in range(len(password)):
-        if not password[i].alphanum():
+        if password[i] in special_chars:
             break
         if i == len(password) - 1:
             return False
