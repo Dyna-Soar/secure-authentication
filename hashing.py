@@ -2,12 +2,14 @@ from hashlib import sha256
 
 
 def hash_password(password):
+    """This is a sha256 hash function"""
     encoded_password = bytes(str(password), encoding='utf-8')
     hashed_password = sha256(encoded_password).hexdigest().encode('utf-8')
     return str(hashed_password)
 
 
 def create_hashed_password(password):
+    """This function return a hashed password and check validity of password"""
     # Check for 8 characters minimum and 128 max
     if len(password) < 8 or len(password) > 128:
         return False
@@ -28,6 +30,7 @@ def create_hashed_password(password):
 
 
 def check_hash(password, hash_sent):
+    """This function check if password matches the hash"""
     # If hashed password equals hash stored then this is the right password and return true
     if hash_sent == hash_password(password):
         return True
