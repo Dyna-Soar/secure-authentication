@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 @app.route("/request_authentication", methods=['POST'])
 def request_authentication():
+    """Check if user is legitimate"""
     if request.form.get("password") is None:
         return jsonify({"Missing Data": "No password provided"}), 400
     if request.form.get("hash_sent") is None:
@@ -20,6 +21,7 @@ def request_authentication():
 
 @app.route("/hash_new_password", methods=['POST'])
 def hash_new_password():
+    """Hash a password"""
     if request.form.get("password") is None:
         return jsonify({"Missing Data": "No password provided"}), 400
     password = request.form["password"]
